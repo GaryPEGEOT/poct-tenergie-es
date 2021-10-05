@@ -4,7 +4,12 @@ fos_elastica:
         default: { url: '%env(ELASTICSEARCH_DATA_HOST)%' }
     indexes:
         inverters_data:
-            serializer: ~
+            properties:
+                idProjet: ~
+                datetime: ~
+                inverterId: ~
+                pac: ~
+                pacConsolidate: ~
             persistence:
                 driver: orm
                 model: App\Entity\InvertersData

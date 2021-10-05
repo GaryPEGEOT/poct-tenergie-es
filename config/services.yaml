@@ -26,3 +26,7 @@ services:
 
     Symfony\Bridge\Monolog\Handler\ElasticsearchLogstashHandler:
         $endpoint: '%env(ELASTICSEARCH_LOG_HOST)%'
+
+    App\Command\ImportInvertedDataCommand:
+        arguments:
+            $persister: '@fos_elastica.object_persister.inverters_data'
