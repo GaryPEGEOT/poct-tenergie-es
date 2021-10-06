@@ -6,7 +6,7 @@ fos_elastica:
         inverters_data:
             properties:
                 id: ~
-                idProjet: ~
+                projectId: ~
                 datetime:
                     type: date
                 inverterId: ~
