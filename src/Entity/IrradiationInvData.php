@@ -13,6 +13,13 @@ use Doctrine\ORM\Mapping as ORM;
 class IrradiationInvData
 {
     /**
+     * @ORM\Column(type="guid")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="UUID")
+     */
+    private ?string $id;
+
+    /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
      * @ORM\Column(name="id_projet", type="integer", nullable=false)

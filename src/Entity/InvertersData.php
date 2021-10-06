@@ -13,18 +13,21 @@ use Doctrine\ORM\Mapping as ORM;
 class InvertersData
 {
     /**
-     * @ORM\Column(name="id_projet", type="integer", nullable=false)
+     * @ORM\Column(type="integer", options={"unsigned"=true})
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private int $idProjet;
+    private ?int $id = null;
+
+    /**
+     * @ORM\Column(name="id_projet", type="integer", nullable=false)
+     */
+    private int $projectId;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="datetime", type="datetime_immutable", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
      */
     private \DateTimeInterface $datetime;
 
@@ -43,17 +46,33 @@ class InvertersData
      */
     private ?int $pacConsolidate;
 
-    public function getIdProjet(): int
+    public function __construct(int $projectId, \DateTimeInterface $datetime, ?int $inverterId = null, ?int $pac = null, ?int $pacConsolidate = null)
     {
-        return $this->idProjet;
+        $this->projectId = $projectId;
+        $this->datetime = $datetime;
+        $this->inverterId = $inverterId;
+        $this->pac = $pac;
+        $this->pacConsolidate = $pacConsolidate;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getDatetime()
+    public function getId(): ?int
     {
-        return $this->datetime;
+        return $this->id;
+    }
+
+    public function getProjectId(): int
+    {
+        return $this->projectId;
+    }
+
+    public function getIdentifier()
+    {
+        return "{$this->projectId}_{$this->datetime->format(\DATE_ISO8601)}";
+    }
+
+    public function getDatetime(): string
+    {
+        return $this->datetime->format(\DATE_ISO8601);
     }
 
     public function getInverterId(): ?int

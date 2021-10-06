@@ -5,8 +5,10 @@ fos_elastica:
     indexes:
         inverters_data:
             properties:
+                id: ~
                 idProjet: ~
-                datetime: ~
+                datetime:
+                    type: date
                 inverterId: ~
                 pac: ~
                 pacConsolidate: ~

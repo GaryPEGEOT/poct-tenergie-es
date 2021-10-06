@@ -29,12 +29,13 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `A_V2_invertersDatas` (
+  id          INT AUTO_INCREMENT NOT NULL,
   `id_projet` int(11) NOT NULL,
-  `G572` int(10) UNSIGNED DEFAULT NULL,
+  `G572` int(10) UNSIGNED NOT NULL,
   `datetime` datetime NOT NULL,
   `pac` int(11) DEFAULT NULL,
   `pac_consolidate` int(11) DEFAULT NULL,
-   PRIMARY KEY(id_projet, datetime)
+  PRIMARY KEY (id)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 --
