@@ -42,8 +42,10 @@ services:
             - '3306'
         volumes:
             - ./docker/mysql/dump:/docker-entrypoint-initdb.d
+            - database:/var/lib/mysql
 
 volumes:
+    database: {}
     data01:
         driver: local
 
