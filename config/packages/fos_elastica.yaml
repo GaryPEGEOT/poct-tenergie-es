@@ -6,12 +6,16 @@ fos_elastica:
         inverters_data:
             properties:
                 id: ~
-                projectId: ~
+                projectId:
+                    type: keyword
                 datetime:
                     type: date
-                inverterId: ~
-                pac: ~
-                pacConsolidate: ~
+                inverterId:
+                    type: keyword
+                pac:
+                    type: integer
+                pacConsolidate:
+                    type: integer
             persistence:
                 driver: orm
                 model: App\Entity\InvertersData
