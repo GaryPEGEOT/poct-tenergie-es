@@ -36,17 +36,16 @@ class SimulateImportMonitoringCommand extends Command
         $batchSize = $input->getArgument('batchSize');
         $page = self::LIMIT / $batchSize;
         $now = new \DateTime('last week');
-        $id = 1;
         $responses = [];
 
         while ($page > 0) {
             $body = '';
             for ($i = 0; $i < $batchSize; ++$i) {
-                ++$id;
-                $date = $now->modify('+1 hour')->format(\DATE_ISO8601);
+                $date = $now->modify('+5 min');
+                $id = $date->getTimestamp();
                 $body .= <<<EOL
                     {"index":{"_id":"$id","_index":"inverters_data"}}
-                    {"id":$id,"idProjet":3,"datetime":"$date","inverterId":1868,"pac":12648,"pacConsolidate":null}
+                    {"id":$id,"idProjet":3,"datetime":"{$date->format(\DATE_ISO8601)}","inverterId":1868,"pac":12648,"pacConsolidate":null}
 
                     EOL;
             }
