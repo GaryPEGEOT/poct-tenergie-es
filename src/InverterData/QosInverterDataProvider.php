@@ -21,8 +21,6 @@ class QosInverterDataProvider implements InverterDataProviderInterface
     public function provide(int $projectId, array $config): \Generator
     {
         $responses = [];
-        $dateMax = new \DateTimeImmutable('today');
-        $dateMin = $dateMax->modify('-1 day');
         foreach ($config['invertersConfig'] as $inverter) {
             $sensorId = $inverter['E3236'];
             $interval = $inverter['E3275'];
@@ -55,16 +53,10 @@ class QosInverterDataProvider implements InverterDataProviderInterface
                 if ($chunk->isLast()) {
                     ['interval' => $interval, 'sensorId' => $sensorId, 'inverterId' => $inverterId] = $res->getInfo('user_data');
                     $measurements = $res->toArray();
-                    $closestDate = null;
 
                     $this->logger->info('[Inverter][Synchro] Received sensor #{id} data', ['id' => $sensorId]);
                     foreach ($measurements as $measurement) {
-                        $closestDate ??= $measurement['date'];
                         foreach ($this->formatData($measurement, $interval) as $date => $pac) {
-                            if ((new \DateTime($date, new \DateTimeZone('Europe/Paris'))) > $dateMin) {
-                                break;
-                            }
-
                             yield [
                                 'projectId' => $projectId,
                                 'inverterId' => $inverterId,
@@ -73,6 +65,7 @@ class QosInverterDataProvider implements InverterDataProviderInterface
                                 'pacConsolidate' => null,
                             ];
                         }
+                        break;
                     }
                 }
             } catch (TransportExceptionInterface $e) {
