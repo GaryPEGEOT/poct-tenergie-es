@@ -31,6 +31,8 @@ class ImportPacDataHandler implements MessageHandlerInterface, LoggerAwareInterf
     public function __invoke(ImportPacData $message): void
     {
         $projectId = $message->getProjectId();
+        $ctx = ['id' => $projectId, 'type' => 'pac_syncho'];
+        $this->logger->info('[Inverter][Synchro] Starting synchro of project #{id}', $ctx);
 
         $config = $this->inverterConfigFetcher->fetch($projectId);
         $batch = [];
@@ -44,6 +46,7 @@ class ImportPacDataHandler implements MessageHandlerInterface, LoggerAwareInterf
             }
         }
         $this->sendBatch($batch);
+        $this->logger->info('[Inverter][Synchro] Finished synchro of project #{id}', $ctx);
     }
 
     private function sendBatch(array $batch): void
