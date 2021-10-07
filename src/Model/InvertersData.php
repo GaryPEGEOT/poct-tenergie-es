@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Filter\RangeFilter;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
@@ -12,6 +13,7 @@ use ApiPlatform\Core\Bridge\Elasticsearch\DataProvider\Filter\TermFilter;
  * @ApiResource
  * @ApiFilter(OrderFilter::class, properties={"id", "datetime"})
  * @ApiFilter(TermFilter::class, properties={"projectId", "inverterId"})
+ * @ApiFilter(RangeFilter::class, properties={"datetime", "pac"})
  */
 class InvertersData
 {
