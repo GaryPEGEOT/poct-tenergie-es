@@ -35,7 +35,11 @@ services:
         volumes:
             - ./docker/mysql/dump:/docker-entrypoint-initdb.d
             - database:/var/lib/mysql
-
+    rabbitmq:
+        image: rabbitmq:3.9-management-alpine
+        ports:
+            - '5672:5672'
+            - '8080:15672'
 volumes:
     database: {}
     elasticsearch_data:
