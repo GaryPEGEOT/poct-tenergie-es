@@ -22,6 +22,10 @@ class InvertersData
     public int $projectId = 0;
     public \DateTimeInterface $datetime;
     public string $inverterId = '';
-    public ?float $pac = null;
+
+    /**
+     * @var int|float|null
+     */
+    public $pac = null;
     public ?int $pacConsolidate = null;
 }
