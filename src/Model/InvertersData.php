@@ -13,7 +13,7 @@ use ApiPlatform\Core\Bridge\Elasticsearch\DataProvider\Filter\TermFilter;
  * @ApiFilter(OrderFilter::class, properties={"id", "datetime"})
  * @ApiFilter(TermFilter::class, properties={"projectId", "inverterId"})
  */
-class InverterData
+class InvertersData
 {
     /**
      * @ApiProperty(identifier=true)
