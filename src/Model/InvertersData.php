@@ -19,7 +19,7 @@ class InvertersData
      * @ApiProperty(identifier=true)
      */
     public string $id = '';
-    public string $projectId = '';
+    public int $projectId = 0;
     public \DateTimeInterface $datetime;
     public string $inverterId = '';
     public int $pac = 0;
