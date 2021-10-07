@@ -17,6 +17,18 @@ framework:
     php_errors:
         log: true
 
+    http_client:
+        scoped_clients:
+            qos.client:
+                base_uri: '%env(QOS_API_URL)%'
+                auth_basic: '%env(QOS_EMAIL_ADDRESS)%:%env(QOS_PASSWORD)%'
+            inverters_config.client:
+                base_uri: '%env(INVERTERS_CONFIG_API_URL)%'
+                headers:
+                    X-Authorization: '%env(INVERTERS_CONFIG_API_KEY)%'
+            elasticsearch.client:
+                base_uri: '%env(ELASTICSEARCH_DATA_HOST)%'
+
 when@test:
     framework:
         test: true
