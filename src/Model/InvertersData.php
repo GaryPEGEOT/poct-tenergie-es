@@ -2,12 +2,12 @@
 
 namespace App\Model;
 
-use App\Filter\RangeFilter;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Bridge\Elasticsearch\DataProvider\Filter\OrderFilter;
 use ApiPlatform\Core\Bridge\Elasticsearch\DataProvider\Filter\TermFilter;
+use App\Filter\RangeFilter;
 
 /**
  * @ApiResource
